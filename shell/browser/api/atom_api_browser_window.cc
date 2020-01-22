@@ -295,11 +295,11 @@ void BrowserWindow::OnWindowLeaveFullScreen() {
 #endif
 }
 
-void BrowserWindow::Focus() {
+void BrowserWindow::Focus(const gin_helper::Dictionary& options) {
   if (api_web_contents_->IsOffScreen())
     FocusOnWebView();
   else
-    TopLevelWindow::Focus();
+    TopLevelWindow::Focus(options);
 }
 
 void BrowserWindow::Blur() {

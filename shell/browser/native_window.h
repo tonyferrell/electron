@@ -70,7 +70,8 @@ class NativeWindow : public base::SupportsUserData,
   virtual void Close() = 0;
   virtual void CloseImmediately() = 0;
   virtual bool IsClosed() const;
-  virtual void Focus(bool focus) = 0;
+  virtual void Focus(const gin_helper::Dictionary& options) = 0;
+  virtual void Blur() = 0;
   virtual bool IsFocused() = 0;
   virtual void Show() = 0;
   virtual void ShowInactive() = 0;

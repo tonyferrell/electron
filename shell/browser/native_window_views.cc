@@ -367,16 +367,20 @@ void NativeWindowViews::CloseImmediately() {
   widget()->CloseNow();
 }
 
-void NativeWindowViews::Focus(bool focus) {
+void NativeWindowViews::Focus(const gin_helper::Dictionary& options) {
   // For hidden window focus() should do nothing.
   if (!IsVisible())
     return;
 
-  if (focus) {
-    widget()->Activate();
-  } else {
-    widget()->Deactivate();
-  }
+  widget()->Activate();
+}
+
+void NativeWindowViews::Blur() {
+  // For hidden window focus() should do nothing.
+  if (!IsVisible())
+    return;
+
+  widget()->Deactivate();
 }
 
 bool NativeWindowViews::IsFocused() {

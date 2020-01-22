@@ -601,16 +601,22 @@ void NativeWindowMac::CloseImmediately() {
   [window_ close];
 }
 
-void NativeWindowMac::Focus(bool focus) {
+void NativeWindowMac::Focus(const gin_helper::Dictionary& options) {
   if (!IsVisible())
     return;
 
-  if (focus) {
-    [[NSApplication sharedApplication] activateIgnoringOtherApps:NO];
-    [window_ makeKeyAndOrderFront:nil];
-  } else {
-    [window_ orderBack:nil];
-  }
+  bool ignoreOtherApps = false;
+  options.Get("ignoreOtherApps", &ignoreOtherApps);
+  [[NSApplication sharedApplication] activateIgnoringOtherApps:ignoreOtherApps];
+
+  [window_ makeKeyAndOrderFront:nil];
+}
+
+void NativeWindowMac::Blur() {
+  if (!IsVisible())
+    return;
+
+  [window_ orderBack:nil];
 }
 
 bool NativeWindowMac::IsFocused() {

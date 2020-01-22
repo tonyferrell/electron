@@ -307,12 +307,12 @@ void TopLevelWindow::Close() {
   window_->Close();
 }
 
-void TopLevelWindow::Focus() {
-  window_->Focus(true);
+void TopLevelWindow::Focus(const gin_helper::Dictionary& options) {
+  window_->Focus(options);
 }
 
 void TopLevelWindow::Blur() {
-  window_->Focus(false);
+  window_->Blur();
 }
 
 bool TopLevelWindow::IsFocused() {
