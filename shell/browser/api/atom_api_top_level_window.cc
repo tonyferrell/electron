@@ -307,7 +307,7 @@ void TopLevelWindow::Close() {
   window_->Close();
 }
 
-void TopLevelWindow::Focus(const gin_helper::Dictionary& options) {
+void TopLevelWindow::Focus(const FocusOptions& options) {
   window_->Focus(options);
 }
 

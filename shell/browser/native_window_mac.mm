@@ -601,13 +601,12 @@ void NativeWindowMac::CloseImmediately() {
   [window_ close];
 }
 
-void NativeWindowMac::Focus(const gin_helper::Dictionary& options) {
+void NativeWindowMac::Focus(const FocusOptions& options) {
   if (!IsVisible())
     return;
 
-  bool ignoreOtherApps = false;
-  options.Get("ignoreOtherApps", &ignoreOtherApps);
-  [[NSApplication sharedApplication] activateIgnoringOtherApps:ignoreOtherApps];
+  [[NSApplication sharedApplication]
+      activateIgnoringOtherApps:options.ignoreOtherApps];
 
   [window_ makeKeyAndOrderFront:nil];
 }

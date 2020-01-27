@@ -91,7 +91,7 @@ class TopLevelWindow : public gin_helper::TrackableObject<TopLevelWindow>,
   // Public APIs of NativeWindow.
   void SetContentView(gin::Handle<View> view);
   void Close();
-  virtual void Focus(const gin_helper::Dictionary& options);
+  virtual void Focus(const FocusOptions& options);
   virtual void Blur();
   bool IsFocused();
   void Show();
